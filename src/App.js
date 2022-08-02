@@ -1,7 +1,19 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
+import HousePreview from './components/HousePreview';
 
 function App() {
+  const [houses, setHouses] = useState([])
+
+  useEffect(()=> {
+    fetch('http://localhost:9292/houses')
+    .then(resp => resp.json())
+    .then(setHouses)
+  },[])
+
+  const houseCards= houses.map(house =>{
+    return <HousePreview key={house.id} house={house}/>
+  })
 
   const states = ["AL","AK","AS","AZ","AR","CA","CO","CT","DE","DC","FM","FL","GA","GU","HI","ID","IL","IN","IA","KS","KY","LA","ME","MH","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","PW","PA","PR","RI","SC","SD","TN","TX","UT","VT","VI","VA","WA","WV","WI","WY"];
 
@@ -19,7 +31,7 @@ function App() {
             </div>
           </div>
         </div>
-        
+
 
         <div className='other-houses'>
 
@@ -36,86 +48,10 @@ function App() {
             <div className='row'>
               <div className='col-md-12' id='house-preview-container'>
                 <div className='row'>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project1</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project2</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project3</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project4</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project5</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project6</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project7</h5>
-                    </div>
-                    <div className='house-preview-button-container'>
-                      <button id='house-preview-button' className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
+                  {houseCards}
                 </div>
               </div>
-            </div>              
+            </div>
           </div>
 
           <div className='other-houses-search-results'>
@@ -133,19 +69,19 @@ function App() {
                         <div className='form-group'>
                           <label for='house-image'>Image</label>
                           <input type='text' placeholder='Image URL' />
-                        </div> 
+                        </div>
                         <div className='form-group'>
                           <label for='house-address'>Address</label>
                           <input type='text' placeholder='Street Address' />
-                            
-                        </div>   
+
+                        </div>
                         <div className='form-group'>
                           <input id='city' type='text' name='city' placeholder='City' />
                           <select id='state' type='text' name='state'>
                           {states.map((state) => <option value={state}>{state}</option>)}
                           </select>
                           <input id='zip' type='text' placeholder='Zip Code' />
-                        </div>                             
+                        </div>
                       </form>
                     </div>
 
@@ -175,7 +111,7 @@ function App() {
                           </div>
                         </div>
                       </div>
-                      
+
                     </div>
                     <div className='col-md-3'>
                       <div className='row'>
@@ -261,7 +197,7 @@ function App() {
                                     <p>Screwdriver</p>
                                   </div>
                                 </div>
-                              </div> 
+                              </div>
                               <div className='col-sm-12 single-tool'>
                                 <div className='row'>
                                   <div className='col-sm-3 tool-image-container'>
@@ -271,7 +207,7 @@ function App() {
                                     <p>Blowtorch</p>
                                   </div>
                                 </div>
-                              </div>                             
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -309,7 +245,7 @@ function App() {
                         <div className='col-sm-12'>
                           <p><strong>Total Cost: $99.99</strong></p>
                         </div>
-                      </div>                   
+                      </div>
                     </div>
                   </div>
               </div>
