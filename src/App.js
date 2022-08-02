@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
             </div>
           </div>
         </div>
-        
+
 
         <div className='other-houses'>
 
@@ -115,7 +115,7 @@ function App() {
                   </div>
                 </div>
               </div>
-            </div>              
+            </div>
           </div>
 
           <div className='other-houses-search-results'>
@@ -133,19 +133,19 @@ function App() {
                         <div className='form-group'>
                           <label for='house-image'>Image</label>
                           <input type='text' placeholder='Image URL' />
-                        </div> 
+                        </div>
                         <div className='form-group'>
                           <label for='house-address'>Address</label>
                           <input type='text' placeholder='Street Address' />
-                            
-                        </div>   
+
+                        </div>
                         <div className='form-group'>
                           <input id='city' type='text' name='city' placeholder='City' />
                           <select id='state' type='text' name='state'>
                           {states.map((state) => <option value={state}>{state}</option>)}
                           </select>
                           <input id='zip' type='text' placeholder='Zip Code' />
-                        </div>                             
+                        </div>
                       </form>
                     </div>
 
@@ -175,7 +175,7 @@ function App() {
                           </div>
                         </div>
                       </div>
-                      
+
                     </div>
                     <div className='col-md-3'>
                       <div className='row'>
@@ -261,7 +261,7 @@ function App() {
                                     <p>Screwdriver</p>
                                   </div>
                                 </div>
-                              </div> 
+                              </div>
                               <div className='col-sm-12 single-tool'>
                                 <div className='row'>
                                   <div className='col-sm-3 tool-image-container'>
@@ -271,7 +271,7 @@ function App() {
                                     <p>Blowtorch</p>
                                   </div>
                                 </div>
-                              </div>                             
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -309,7 +309,7 @@ function App() {
                         <div className='col-sm-12'>
                           <p><strong>Total Cost: $99.99</strong></p>
                         </div>
-                      </div>                   
+                      </div>
                     </div>
                   </div>
               </div>
