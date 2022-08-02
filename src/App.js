@@ -9,7 +9,7 @@ function App() {
     fetch('http://localhost:9292/houses')
     .then(resp => resp.json())
     .then(setHouses)
-  })
+  },[])
 
   const houseCards= houses.map(house =>{
     return <HousePreview key={house.id} house={house}/>
