@@ -1,7 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
+import HousePreview from './components/HousePreview';
 
 function App() {
+  const [houses, setHouses] = useState([])
+
+  useEffect(()=> {
+    fetch('http://localhost:9292/houses')
+    .then(resp => resp.json())
+    .then(setHouses)
+  })
+
+  const houseCards= houses.map(house =>{
+    return <HousePreview key={house.id} house={house}/>
+  })
 
   const states = ["AL","AK","AS","AZ","AR","CA","CO","CT","DE","DC","FM","FL","GA","GU","HI","ID","IL","IN","IA","KS","KY","LA","ME","MH","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","MP","OH","OK","OR","PW","PA","PR","RI","SC","SD","TN","TX","UT","VT","VI","VA","WA","WV","WI","WY"];
 
@@ -36,83 +48,7 @@ function App() {
             <div className='row'>
               <div className='col-md-12' id='house-preview-container'>
                 <div className='row'>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project1</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project2</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project3</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project4</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project5</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project6</h5>
-                    </div>
-                    <div className='house-preview-button'>
-                      <button className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
-                  <div className='col-sm-2 house-preview'>
-                    <div className='house-preview-image'>
-                      <img src='https://cdn-icons-png.flaticon.com/512/25/25694.png' alt='House Preview Button' />
-                    </div>
-                    <div className='house-preview-name'>
-                      <h5>Project7</h5>
-                    </div>
-                    <div className='house-preview-button-container'>
-                      <button id='house-preview-button' className='btn btn-primary'>View Project</button>
-                    </div>
-                  </div>
+                  {houseCards}
                 </div>
               </div>
             </div>
