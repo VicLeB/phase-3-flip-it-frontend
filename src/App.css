@@ -1,38 +1,101 @@
-.App {
+.header{
+  margin-bottom: 30px;
+}
+
+input, select {
+  display: block;
+}
+
+#city, #state, #zip{
+  display: inline-block;
+}
+
+#city{
+  width: 100px;
+  margin-right: 5px;
+}
+
+#zip{
+  width: 75px;
+}
+
+#state{
+  height: 29px;
+  margin-right: 5px;
+}
+
+.house-preview-button{
+  max-width: 100%;
+}
+
+.house-preview-image{
+  max-width: 100%;
+}
+
+.house-preview-image img{
+  max-width: 100%;
+}
+
+.house-preview{
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#house-preview-container{
+  border-radius: .5em;
+  border: solid 2px darkgray;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px;
+  margin-bottom: 25px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#house-preview-container > .row {
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.house-preview{
+  margin-bottom: 15px;
 }
 
-.App-link {
-  color: #61dafb;
+#rooms-container, #projects-container{
+  border: solid 2px darkgray;
+  border-radius: .5em;
+  min-height: 500px;
+  padding: 15px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.room-listing, .project-listing{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: solid 1px darkgray;
+}
+
+#tools-list-container, #parts-list-container{
+  height: 150px;
+  border: solid 1px darkgray;
+  border-radius: .5em;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+.tool-image-container, .tool-image, .part-image-container, .part-image{
+  max-width: 100%;
+}
+
+.part-price{
+  position: relative;
+  right: 10px;
+}
+
+.single-tool{
+  border-bottom: solid 1px darkgray;
+  margin-bottom: 10px;
+}
+
+#tools-list-container, #parts-list-container {
+  overflow-y: scroll;
 }
