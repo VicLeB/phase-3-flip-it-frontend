@@ -1,6 +1,7 @@
 import React from "react";
 import Tool from './Tool';
 import Part from './Part';
+import Popup from 'reactjs-popup';
 
 function ProjectInfo(){
     return(
@@ -30,7 +31,19 @@ function ProjectInfo(){
                             <p>Tools Needed</p>
                         </div>
                         <div className='col-sm-6'>
-                            <button className='btn btn-primary'>Add a Tool</button>
+                            <Popup trigger={<button id="new-tool-button" className="btn btn-primary">Add a Tool</button>} modal>
+                                <form>
+                                    <div className='form-group'>
+                                        <label for='tool-name'>Tool Name</label>
+                                        <input type='text' name='tool-name' placeholder='Tool Name' />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label for='tool-image'>Tool Image</label>
+                                        <input type='text' name='tool-image' placeholder='Image URL' />
+                                    </div>
+                                    <button name="submit" type="submit" className="btn btn-primary">Add Tool</button>
+                                </form>
+                            </Popup>
                         </div>
                     </div>
                     <div id='tools-list-container'>
@@ -50,7 +63,23 @@ function ProjectInfo(){
                             <p>Parts Needed</p>
                         </div>
                         <div className='col-sm-6'>
-                            <button className='btn btn-primary'>Add a Part</button>
+                            <Popup trigger={<button id="new-part-button" className="btn btn-primary">Add a Part</button>} modal>
+                                <form>
+                                    <div className='form-group'>
+                                        <label for='part-name'>Part Name</label>
+                                        <input type='text' name='part-name' placeholder='Part Name' />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label for='part-image'>Part Image</label>
+                                        <input type='text' name='part-image' placeholder='Image URL' />
+                                    </div>
+                                    <div className='form-group'>
+                                        <label for='part-price'>Part Price</label>
+                                        <input type='text' name='part-price' placeholder='Part Price' />
+                                    </div>
+                                    <button name="submit" type="submit" className="btn btn-primary">Add Part</button>
+                                </form>
+                            </Popup>
                         </div>
                     </div>
                 </div>

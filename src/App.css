@@ -32,8 +32,18 @@ input, select {
   max-width: 100%;
 }
 
+.house-preview-name{
+  height: 60px;
+}
+
+.house-preview-name p{
+  white-space: normal;
+  font-weight: 600;
+}
+
 .house-preview-image img{
   max-width: 100%;
+  height: 100px;
 }
 
 .house-preview{
@@ -111,4 +121,33 @@ input, select {
 
 .form-check{
   margin-bottom: 15px;
+}
+
+.new-house-button{
+  float: right;
+}
+
+.delete-buttons{
+  float: right;
+}
+
+.popup-content {
+  margin: auto;
+  background: rgb(255, 255, 255);
+  padding: 15px;
+  border-radius: .5em;
+}
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
 }

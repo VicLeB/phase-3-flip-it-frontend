@@ -1,5 +1,6 @@
 import React from "react";
 import Project from './Project';
+import Popup from 'reactjs-popup';
 
 function Projects(){
     return (
@@ -12,7 +13,15 @@ function Projects(){
                 </div>
                 <div className='col-sm-6'>
                     <div id='project-add-button'>
-                        <button className='btn btn-primary'>Add Project</button>
+                        <Popup trigger={<button id="new-project-button" className="btn btn-primary">Add Project</button>} modal>
+                            <form>
+                                <div className='form-group'>
+                                    <label for='project-name'>Project Name</label>
+                                    <input type='text' name='project-name' placeholder='Project Name' />
+                                </div>
+                                <button name="submit" type="submit" className="btn btn-primary">Create Project</button>
+                            </form>
+                        </Popup>
                     </div>
                 </div>
             </div>
