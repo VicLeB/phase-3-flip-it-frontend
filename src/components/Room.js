@@ -2,7 +2,8 @@ import React from "react";
 
 function Room({room, handleRoomClick}){
 
-    function handleClick(){
+    function handleClick(e){
+        (e).preventDefault()
         handleRoomClick(room.id)
     }
 

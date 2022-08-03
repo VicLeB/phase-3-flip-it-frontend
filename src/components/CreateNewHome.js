@@ -11,17 +11,17 @@ function CreateNewHome(){
                 <div id="popup-contents">
                     <form>
                         <div className='form-group'>
-                            <label for='house-name'>House Name</label>
+                            <label htmlFor='house-name'>House Name</label>
                             <input type='text' placeholder='House Nickname' />
                         </div>
                         <div className='form-group'>
-                            <label for='house-image'>Image</label>
+                            <label htmlFor='house-image'>Image</label>
                             <input type='text' placeholder='Image URL' />
-                        </div> 
+                        </div>
                         <div className='form-group'>
-                            <label for='house-address'>Address</label>
+                            <label htmlFor='house-address'>Address</label>
                             <input type='text' placeholder='Street Address' />
-                        </div>   
+                        </div>
                         <div className='form-group'>
                             <input id='city' type='text' name='city' placeholder='City' />
                             <select id='state' type='text' name='state'>

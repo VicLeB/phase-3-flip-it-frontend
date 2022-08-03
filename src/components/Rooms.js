@@ -28,7 +28,7 @@ function Rooms({id, handleRoomClick}){
                         <Popup trigger={<button id="new-room-button" className="btn btn-primary">Add Room</button>} modal>
                             <form>
                                 <div className='form-group'>
-                                    <label for='room-name'>Room Name</label>
+                                    <label htmlFor='room-name'>Room Name</label>
                                     <input type='text' name='room-name' placeholder='Room Name' />
                                 </div>
                                 <button name="submit" type="submit" className="btn btn-primary">Create Room</button>
