@@ -1,17 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import House from './House';
 import Rooms from './Rooms';
 import Projects from './Projects';
 import ProjectInfo from './ProjectInfo';
+import { theHouseDetials, theRoomId, theAddress, theRoomProjects, theProjectId, theProjectSupplies } from '../atoms'
 
 
 function HouseForm({id}){
-    const [houseDetails, setHouseDetails] = useState({})
-    const [roomId, setRoomId] = useState("")
-    const [address, setAddress] = useState({})
-    const [roomProjects, setRoomProjects] = useState({})
-    const [projectId, setProjectId] = useState("")
-    const [projectSupplies, setProjectSupplies]= useState({})
+    const [houseDetails, setHouseDetails] = useRecoilState(theHouseDetials);
+    const [roomId, setRoomId] = useRecoilState(theRoomId);
+    const [address, setAddress] = useRecoilState(theAddress);
+    const [roomProjects, setRoomProjects] = useRecoilState(theRoomProjects);
+    const [projectId, setProjectId] = useRecoilState(theProjectId);
+    const [projectSupplies, setProjectSupplies] = useRecoilState(theProjectSupplies);
 
     console.log(id)
 

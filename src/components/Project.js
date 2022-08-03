@@ -2,7 +2,8 @@ import React from "react";
 
 function Project({project, handleProjectClick}){
 
-    function handleClick(){
+    function handleClick(e){
+        (e).preventDefault()
         handleProjectClick(project.id)
     }
 
