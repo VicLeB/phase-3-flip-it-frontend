@@ -99,3 +99,16 @@ input, select {
 #tools-list-container, #parts-list-container {
   overflow-y: scroll;
 }
+
+.part-image-container{
+  padding-right: 0px;
+}
+
+.tools-delete, .parts-delete{
+  position: relative;
+  top: -5px;
+}
+
+.form-check{
+  margin-bottom: 15px;
+}
