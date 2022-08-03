@@ -2,9 +2,17 @@ import React from "react";
 import Project from './Project';
 import Popup from 'reactjs-popup';
 
-function Projects(){
+function Projects({roomProjects, handleProjectClick}){
+    const projects = roomProjects.projects
+
+    const projectList = projects?.map(project =>{
+        return <Project key={project.id} project={project} handleProjectClick = {handleProjectClick}/>
+    })
+
+    console.log(projects)
+
     return (
-        <div className='col-md-3'>  
+        <div className='col-md-3'>
             <div className='row'>
                 <div className='col-sm-6'>
                     <div id='project-title'>
@@ -27,10 +35,8 @@ function Projects(){
             </div>
             <div className='row'>
                 <div id='projects-container' className='col-sm-12'>
-                    <h3>Kitchen Projects</h3>
-                    <Project name={'Fix Sink'} />
-                    <Project name={'Install Stove'} />
-                    <Project name={'Replace Countertop'} />
+                    <h3>Projects</h3>
+                    {projectList}
                 </div>
             </div>
         </div>

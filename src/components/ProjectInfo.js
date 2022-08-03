@@ -3,23 +3,33 @@ import Tool from './Tool';
 import Part from './Part';
 import Popup from 'reactjs-popup';
 
-function ProjectInfo(){
+function ProjectInfo({projectSupplies}){
+    const tools = projectSupplies.tools
+    const parts = projectSupplies.parts
+
+    const toolsList = tools?.map(tool =>{
+        return <Tool key={tool.id} tool={tool}/>
+    })
+
+    const partsList = parts?.map(part => {
+        return <Part key= {part.id} part={part}/>
+    })
     return(
         <div className='col-md-3'>
             <div className='row'>
                 <div className='col-sm-12'>
                     <form>
-                        <div class="form-group">
-                            <label for='project-name'>Project Name</label>
-                            <input type="text" id='project-name' class="form-control" value='Fix Sink' />
+                        <div className="form-group">
+                            <label htmlFor='project-name'>Project Name</label>
+                            <input type="text" id='project-name' className="form-control" value={projectSupplies.name} />
                         </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="project-completed" />
-                            <label class="form-check-label" for="project-completed">Project Completed?</label>
+                        <div className="form-check">
+                            <input type="checkbox" className="form-check-input" id="project-completed" />
+                            <label className="form-check-label" htmlFor="project-completed">Project Completed?</label>
                         </div>
-                        <div class="form-group">
-                            <label for='project-description'>Project Description</label>
-                            <textarea id='project-description' rows='5' class="form-control" value='The faucet is leaking so I need to replace it.' />
+                        <div className="form-group">
+                            <label htmlFor='project-description'>Project Description</label>
+                            <textarea id='project-description' rows='5' className="form-control" value={projectSupplies.description} />
                         </div>
                     </form>
                 </div>
@@ -48,10 +58,7 @@ function ProjectInfo(){
                     </div>
                     <div id='tools-list-container'>
                         <div className='row'>
-                            <Tool name={'Hammer'} image={'https://cdn-icons-png.flaticon.com/512/2505/2505264.png'} />
-                            <Tool name={'Wrench'} image={'https://www.iconpacks.net/icons/1/free-wrench-icon-951-thumb.png'} />
-                            <Tool name={'Screwdriver'} image={'https://static.thenounproject.com/png/45421-200.png'} />
-                            <Tool name={'Blowtorch'} image={'https://static.thenounproject.com/png/295351-200.png'} />                          
+                            {toolsList}
                         </div>
                     </div>
                 </div>
@@ -86,14 +93,14 @@ function ProjectInfo(){
             </div>
             <div id='parts-list-container'>
                 <div className='row'>
-                    <Part name={'Faucet'} image={'https://cdn-icons-png.flaticon.com/512/3096/3096626.png'} price={'99.99'} />
+                    {partsList}
                 </div>
             </div>
             <div className='row'>
                 <div className='col-sm-12'>
                     <p><strong>Total Cost: $99.99</strong></p>
                 </div>
-            </div>                   
+            </div>
         </div>
     )
 }

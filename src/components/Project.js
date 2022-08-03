@@ -1,9 +1,16 @@
 import React from "react";
 
-function Project({name}){
+function Project({project, handleProjectClick}){
+
+    function handleClick(){
+        handleProjectClick(project.id)
+    }
+
     return(
         <div className='project-listing'>
-            <a href='./#'>{name}</a> <button className="btn btn-primary delete-buttons">X</button>
+
+            <a href='./#' onClick={handleClick}>{project.name}</a> <button className="btn btn-primary delete-buttons">X</button>
+
         </div>
     )
 }
