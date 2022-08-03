@@ -2,10 +2,12 @@ import React, { useState, useEffect} from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import CreateNewHome from './CreateNewHome';
+import { useRecoilState } from 'recoil'
+import {theHouses} from '../atoms'
 
 
 function HouseSearch(){
-  const [houses, setHouses] = useState([])
+  const [houses, setHouses] = useRecoilState(theHouses);
 
   useEffect(()=>{
     fetch('http://localhost:9292/houses')
