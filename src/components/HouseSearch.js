@@ -17,13 +17,15 @@ function HouseSearch(){
   })
 
     return (
-        <div className='other-houses-search'>
+      <div className='other-houses-search'>
 
             <SearchBar />
-            <div className='col-md-12' id='house-preview-container'>
-            {houseCatalog}
+          <div className='col-md-12' id='house-preview-container'>
+            <div className='row'>
+              {houseCatalog}
             </div>
-        </div>
+          </div>
+      </div>
         )
 }
 
