@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
+import CreateNewHome from './CreateNewHome';
 
 
 function HouseSearch(){
@@ -18,8 +19,10 @@ function HouseSearch(){
 
     return (
       <div className='other-houses-search'>
-
+          <div className='row'>
             <SearchBar />
+            <CreateNewHome />
+          </div>
           <div className='col-md-12' id='house-preview-container'>
             <div className='row'>
               {houseCatalog}

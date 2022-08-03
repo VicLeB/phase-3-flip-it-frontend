@@ -9,7 +9,7 @@ function HousePreview({house}){
                     <img src={house.image_url} alt={house.house_name} />
                 </div>
                 <div className='house-preview-name'>
-                    <h5>{house.house_name}</h5>
+                    <p>{house.house_name}</p>
                 </div>
                 <div className='house-preview-button'>
                     <Link to={`/home/${house.id}`} className='btn btn-primary'>View Project</Link>

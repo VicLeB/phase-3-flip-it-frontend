@@ -3,9 +3,9 @@ import HousePreview from './HousePreview';
 
 function SearchResults({house}){
     return (
-        <div className='column'>
-                    <HousePreview house={house}  houseName={house.house_name} />
-        </div>
+        <>
+            <HousePreview house={house}  houseName={house.house_name} />
+        </>
     )
 }
 export default SearchResults

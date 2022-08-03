@@ -8,7 +8,9 @@ function Project({project, handleProjectClick}){
 
     return(
         <div className='project-listing'>
-            <p onClick={handleClick}>{project.name}</p>
+
+            <a href='./#' onClick={handleClick}>{project.name}</a> <button className="btn btn-primary delete-buttons">X</button>
+
         </div>
     )
 }

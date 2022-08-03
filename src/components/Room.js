@@ -8,7 +8,7 @@ function Room({room, handleRoomClick}){
 
     return(
         <div className='room-listing'>
-            <p onClick= {handleClick}>{room.name}</p>
+            <a href='./#' onClick= {handleClick}>{room.name}</a> <button className="btn btn-primary delete-buttons">X</button>
         </div>
     )
 }
