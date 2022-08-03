@@ -7,7 +7,7 @@ export const theHouseDetials = atom({
 
 export const theRooms = atom({
     key: 'rooms',
-    default: ''
+    default: []
 })
 
 export const theRoomId = atom({

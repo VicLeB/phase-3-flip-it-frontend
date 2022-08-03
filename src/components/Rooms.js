@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Room from './Room'
 import Popup from 'reactjs-popup';
+import { useRecoilState } from 'recoil'
 import {theRooms, theFormRoomName} from '../atoms'
 
 function Rooms({id, handleRoomClick}){

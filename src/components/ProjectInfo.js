@@ -2,6 +2,7 @@ import React from "react";
 import Tool from './Tool';
 import Part from './Part';
 import Popup from 'reactjs-popup';
+import { useRecoilState } from 'recoil'
 import {theFormProjectInfoName, theFormProjectInfoDescription, theFormProjectInfoCompleted, theFormToolName, theFormToolImage, theFormPartName, theFormPartImage, theFormPartPrice} from '../atoms'
 
 function ProjectInfo({projectSupplies}){
