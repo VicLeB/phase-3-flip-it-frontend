@@ -12,6 +12,10 @@ function ProjectInfo(){
                             <label for='project-name'>Project Name</label>
                             <input type="text" id='project-name' class="form-control" value='Fix Sink' />
                         </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="project-completed" />
+                            <label class="form-check-label" for="project-completed">Project Completed?</label>
+                        </div>
                         <div class="form-group">
                             <label for='project-description'>Project Description</label>
                             <textarea id='project-description' rows='5' class="form-control" value='The faucet is leaking so I need to replace it.' />
