@@ -1,7 +1,19 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Room from './Room'
 
-function Rooms(){
+function Rooms({id, handleRoomClick}){
+    const [rooms, setRooms] = useState([])
+
+    useEffect(()=>{
+        fetch(`http://localhost:9292/houses/${id}/rooms`)
+        .then(res=> res.json())
+        .then(setRooms)
+    },[])
+
+    const roomList = rooms.map(room => {
+        return <Room key={room.id} room={room} handleRoomClick={handleRoomClick}/>
+    })
+
     return (
         <div className='col-md-3'>
             <div className='row'>
@@ -18,9 +30,7 @@ function Rooms(){
             </div>
             <div className='row'>
                 <div id='rooms-container' className='col-sm-12'>
-                    <Room name={'Kitchen'} />
-                    <Room name={'Guest Bedroom'} />
-                    <Room name={'Master Bedroom'} />
+                    {roomList}
                 </div>
             </div>
         </div>

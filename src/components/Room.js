@@ -1,9 +1,14 @@
 import React from "react";
 
-function Room({name}){
+function Room({room, handleRoomClick}){
+
+    function handleClick(){
+        handleRoomClick(room.id)
+    }
+
     return(
         <div className='room-listing'>
-            <a href='./#'>{name}</a>
+            <p onClick= {handleClick}>{room.name}</p>
         </div>
     )
 }
