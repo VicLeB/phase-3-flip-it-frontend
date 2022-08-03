@@ -44,11 +44,11 @@ function ProjectInfo({projectSupplies}){
                             <Popup trigger={<button id="new-tool-button" className="btn btn-primary">Add a Tool</button>} modal>
                                 <form>
                                     <div className='form-group'>
-                                        <label for='tool-name'>Tool Name</label>
+                                        <label htmlFor='tool-name'>Tool Name</label>
                                         <input type='text' name='tool-name' placeholder='Tool Name' />
                                     </div>
                                     <div className='form-group'>
-                                        <label for='tool-image'>Tool Image</label>
+                                        <label htmlFor='tool-image'>Tool Image</label>
                                         <input type='text' name='tool-image' placeholder='Image URL' />
                                     </div>
                                     <button name="submit" type="submit" className="btn btn-primary">Add Tool</button>
@@ -73,15 +73,15 @@ function ProjectInfo({projectSupplies}){
                             <Popup trigger={<button id="new-part-button" className="btn btn-primary">Add a Part</button>} modal>
                                 <form>
                                     <div className='form-group'>
-                                        <label for='part-name'>Part Name</label>
+                                        <label htmlFor='part-name'>Part Name</label>
                                         <input type='text' name='part-name' placeholder='Part Name' />
                                     </div>
                                     <div className='form-group'>
-                                        <label for='part-image'>Part Image</label>
+                                        <label htmlFor='part-image'>Part Image</label>
                                         <input type='text' name='part-image' placeholder='Image URL' />
                                     </div>
                                     <div className='form-group'>
-                                        <label for='part-price'>Part Price</label>
+                                        <label htmlFor='part-price'>Part Price</label>
                                         <input type='text' name='part-price' placeholder='Part Price' />
                                     </div>
                                     <button name="submit" type="submit" className="btn btn-primary">Add Part</button>
