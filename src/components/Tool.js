@@ -7,8 +7,11 @@ function Tool({name, image}){
                 <div className='col-sm-3 tool-image-container'>
                     <img className='tool-image' src={image} alt='tool' />
                 </div>
-                <div className='col-sm-9'>
+                <div className='col-sm-6'>
                     <p>{name}</p>
+                </div>
+                <div className='col-sm-3'>
+                    <button className="btn btn-primary tools-delete">X</button>
                 </div>
             </div>
         </div>
