@@ -151,3 +151,9 @@ input, select {
 [data-popup='tooltip'].popup-overlay {
   background: transparent;
 }
+
+#house-image{
+  max-width: 100%;
+  border-radius: .5em;
+  margin-bottom: 15px;
+}
