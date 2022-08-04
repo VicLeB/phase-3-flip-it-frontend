@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import { useRecoilState } from 'recoil'
 import {theFormProjectInfoName, theFormProjectInfoDescription, theFormProjectInfoCompleted, theFormToolName, theFormToolImage, theFormPartName, theFormPartImage, theFormPartPrice} from '../atoms'
 
-function ProjectInfo({projectSupplies}){
+function ProjectInfo({projectSupplies, handleSuppliesRender}){
 
     const [formProjectInfoName, setFormProjectInfoName] = useRecoilState(theFormProjectInfoName);
     const [formProjectInfoDescription, setFormProjectInfoDescription] = useRecoilState(theFormProjectInfoDescription);
@@ -20,11 +20,11 @@ function ProjectInfo({projectSupplies}){
     const parts = projectSupplies.parts
 
     const toolsList = tools?.map(tool =>{
-        return <Tool key={tool.id} tool={tool}/>
+        return <Tool key={tool.id} tool={tool} handleSuppliesRender = {handleSuppliesRender}/>
     })
 
     const partsList = parts?.map(part => {
-        return <Part key= {part.id} part={part}/>
+        return <Part key= {part.id} part={part} handleSuppliesRender = {handleSuppliesRender}/>
     })
 
     function toolFormSubmit(e){

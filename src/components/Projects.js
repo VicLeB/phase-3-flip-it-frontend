@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import { useRecoilState } from 'recoil'
 import {theFormProjectName, theFormProjectDescription} from '../atoms'
 
-function Projects({roomProjects, handleProjectClick}){
+function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
 
     const [formProjectName, setFormProjectName] = useRecoilState(theFormProjectName);
     const [formProjectDescription, setFormProjectDescription] = useRecoilState(theFormProjectDescription);
@@ -12,7 +12,7 @@ function Projects({roomProjects, handleProjectClick}){
     const projects = roomProjects.projects
 
     const projectList = projects?.map(project =>{
-        return <Project key={project.id} project={project} handleProjectClick = {handleProjectClick}/>
+        return <Project key={project.id} project={project} handleProjectClick = {handleProjectClick} handleProjectsRender={handleProjectsRender}/>
     })
 
     function projectFormSubmit(e){
