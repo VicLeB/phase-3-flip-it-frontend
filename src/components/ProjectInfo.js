@@ -62,6 +62,22 @@ function ProjectInfo({projectSupplies, handleSuppliesRender, projectId}){
         .then(handleSuppliesRender)
     }
 
+    function handleCheckBox(){
+        let projectStatus = projectSupplies.status
+        fetch(`http://localhost:9292/projects/${projectId}`,{
+            method: "PATCH",
+            headers:{
+                "Content-Type": "application/json",
+                Accept:"application/json",
+            },
+            body:JSON.stringify({
+                status: !projectStatus
+            })
+        })
+        .then(res => res.json())
+        .then(handleSuppliesRender)
+    }
+
     const cost = parts?.map(part => part.cost)
         .reduce((accumulator, a) => {
             return accumulator + a;
@@ -78,7 +94,7 @@ function ProjectInfo({projectSupplies, handleSuppliesRender, projectId}){
                                 <p>{projectSupplies.name}</p>
                             </div>
                             <div className="form-check">
-                                <input type="checkbox" className="form-check-input" id="project-completed" onChange={(e) => setFormProjectInfoCompleted(e.target.value)} />
+                                <input type="checkbox" className="form-check-input" id="project-completed" checked={projectSupplies.status === true ? true : false} onChange={handleCheckBox} />
                                 <label className="form-check-label" htmlFor="project-completed">Project Completed?</label>
                             </div>
                             <div className="form-group">
