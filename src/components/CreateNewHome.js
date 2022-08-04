@@ -2,6 +2,7 @@ import React from "react";
 import Popup from 'reactjs-popup';
 import { useRecoilState } from 'recoil'
 import {theFormHouseName, theFormHouseImage, theFormHouseAddress, theFormHouseCity, theFormHouseState, theFormHouseZip} from '../atoms'
+import {Redirect} from "react-router-dom"
 
 function CreateNewHome(){
 
@@ -20,6 +21,7 @@ function CreateNewHome(){
             method: "POST",
             headers:{
                 "Content-Type": "application/json",
+                Accept:"application/json",
             },
             body: JSON.stringify({
                 house_name: formHouseName,
@@ -30,6 +32,12 @@ function CreateNewHome(){
                 zip_code:formHouseZip,
             })
         })
+        .then(res => res.json())
+        .then(data => handleHouseRedirect(data.id))
+    }
+
+    function handleHouseRedirect(id){
+        <Redirect to={`/home/${id}`}/>
     }
 
 

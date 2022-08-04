@@ -15,6 +15,7 @@ function HouseSearch(){
     .then(setHouses)
   },[])
 
+
   const houseCatalog = houses.map(house => {
     return <SearchResults key={house.id} house={house}/>
   })
