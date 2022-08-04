@@ -25,8 +25,21 @@ function Rooms({id, handleRoomClick}){
         return <Room key={room.id} room={room} handleRoomClick={handleRoomClick} handleRoomsRender={handleRoomsRender}/>
     })
 
+
     function roomFormSubmit(){
-        console.log('room form submitted');
+        fetch("http://localhost:9292/rooms",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                Accept:"application/json",
+            },
+            body: JSON.stringify({
+                name: formRoomName,
+                house_id: id,
+            })
+        })
+        .then(res => res.json())
+        .then(handleRoomsRender)
     }
 
     return (

@@ -4,7 +4,7 @@ import Popup from 'reactjs-popup';
 import { useRecoilState } from 'recoil'
 import {theFormProjectName, theFormProjectDescription} from '../atoms'
 
-function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
+function Projects({roomProjects, handleProjectClick, handleProjectsRender, roomId}){
 
     const [formProjectName, setFormProjectName] = useRecoilState(theFormProjectName);
     const [formProjectDescription, setFormProjectDescription] = useRecoilState(theFormProjectDescription);
@@ -16,10 +16,22 @@ function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
     })
 
     function projectFormSubmit(){
-        console.log('project form submitted');
+        fetch("http://localhost:9292/projects",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                Accept:"application/json",
+            },
+            body: JSON.stringify({
+                name: formProjectName,
+                description: formProjectDescription,
+                room_id: roomId
+            })
+        })
+        .then(res => res.json())
+        .then(handleProjectsRender)
     }
 
-    console.log(projects)
 
     return (
         <div className='col-md-3'>
@@ -43,7 +55,7 @@ function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
                                         <textarea id='project-description' rows='5' className="form-control" onChange={(e) => setFormProjectDescription(e.target.value)} />
                                     </div>
                                     <button name="submit"  type="submit" className="btn btn-primary">Create Project</button>
-                                </form> 
+                                </form>
                             )}
                         </Popup>
                     </div>

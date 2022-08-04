@@ -15,7 +15,6 @@ function HouseForm({id}){
     const [projectId, setProjectId] = useRecoilState(theProjectId);
     const [projectSupplies, setProjectSupplies] = useRecoilState(theProjectSupplies);
 
-    console.log(id)
 
     useEffect(()=>{
         fetch(`http://localhost:9292/houses/${id}`)
@@ -60,11 +59,6 @@ function HouseForm({id}){
         return <div>Loading...</div>
     }
 
-    // console.log(houseDetails)
-    console.log(roomId)
-    // console.log(address)
-    console.log(roomProjects)
-    console.log(projectSupplies)
 
     function handleRoomClick(roomIdent){
         setRoomId(roomIdent)
@@ -82,8 +76,8 @@ function HouseForm({id}){
                     <div className='row'>
                         <House address = {address}/>
                         <Rooms id={id} handleRoomClick={handleRoomClick} />
-                        <Projects roomProjects = {roomProjects} handleProjectClick={handleProjectClick} handleProjectsRender={handleProjectsRender}/>
-                        <ProjectInfo id={id} projectSupplies= {projectSupplies} handleSuppliesRender={handleSuppliesRender}/>
+                        <Projects roomId={roomId} roomProjects = {roomProjects} handleProjectClick={handleProjectClick} handleProjectsRender={handleProjectsRender}/>
+                        <ProjectInfo id={id} projectId={projectId} projectSupplies= {projectSupplies} handleSuppliesRender={handleSuppliesRender}/>
                     </div>
                 </div>
             </div>
