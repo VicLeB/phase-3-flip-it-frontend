@@ -12,28 +12,13 @@ function House({address}){
 
     return(
         <div className='col-md-3'>
-            <h2>House</h2>
-            <form>
-                <div className='form-group'>
-                    <label htmlFor='house-name'>House Name</label>
-                    <input type='text' placeholder={address?.house?.house_name} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='house-image'>Image</label>
-                    <input type='text' placeholder={address?.house?.image_url} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='house-address'>Address</label>
-                    <input type='text' placeholder={address?.street_name} />
-                </div>
-                <div className='form-group'>
-                    <input id='city' type='text' name='city' placeholder={address?.city} />
-                    <select id='state' type='text' name='state'>
-                        {states.map((state) => <option key= {state} value={state}>{address?.state}</option>)}
-                    </select>
-                    <input id='zip' type='text' placeholder={address?.zip_code} />
-                </div>
-            </form>
+            <img id="house-image" src={address?.house?.image_url} />
+            <h3>{address?.house?.house_name}</h3>
+            <strong>Address:</strong>
+            <p>
+                {address?.street_name}<br />
+                {address?.city}, {address?.state} {address?.zip_code}
+            </p>
         </div>
     )
 }

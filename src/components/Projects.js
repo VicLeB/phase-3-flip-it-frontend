@@ -49,7 +49,6 @@ function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
             </div>
             <div className='row'>
                 <div id='projects-container' className='col-sm-12'>
-                    <h3>Projects</h3>
                     {projectList}
                 </div>
             </div>
