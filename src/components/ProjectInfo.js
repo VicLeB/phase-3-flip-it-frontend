@@ -3,16 +3,16 @@ import Tool from './Tool';
 import Part from './Part';
 import Popup from 'reactjs-popup';
 
-function ProjectInfo({projectSupplies}){
+function ProjectInfo({projectSupplies, handleSuppliesRender}){
     const tools = projectSupplies.tools
     const parts = projectSupplies.parts
 
     const toolsList = tools?.map(tool =>{
-        return <Tool key={tool.id} tool={tool}/>
+        return <Tool key={tool.id} tool={tool} handleSuppliesRender = {handleSuppliesRender}/>
     })
 
     const partsList = parts?.map(part => {
-        return <Part key= {part.id} part={part}/>
+        return <Part key= {part.id} part={part} handleSuppliesRender = {handleSuppliesRender}/>
     })
     return(
         <div className='col-md-3'>

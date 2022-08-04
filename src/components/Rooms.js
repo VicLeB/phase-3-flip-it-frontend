@@ -11,8 +11,14 @@ function Rooms({id, handleRoomClick}){
         .then(setRooms)
     },[])
 
+    function handleRoomsRender(){
+        fetch(`http://localhost:9292/houses/${id}/rooms`)
+        .then(res=> res.json())
+        .then(setRooms)
+    }
+
     const roomList = rooms.map(room => {
-        return <Room key={room.id} room={room} handleRoomClick={handleRoomClick}/>
+        return <Room key={room.id} room={room} handleRoomClick={handleRoomClick} handleRoomsRender={handleRoomsRender}/>
     })
 
     return (

@@ -2,11 +2,11 @@ import React from "react";
 import Project from './Project';
 import Popup from 'reactjs-popup';
 
-function Projects({roomProjects, handleProjectClick}){
+function Projects({roomProjects, handleProjectClick, handleProjectsRender}){
     const projects = roomProjects.projects
 
     const projectList = projects?.map(project =>{
-        return <Project key={project.id} project={project} handleProjectClick = {handleProjectClick}/>
+        return <Project key={project.id} project={project} handleProjectClick = {handleProjectClick} handleProjectsRender={handleProjectsRender}/>
     })
 
     console.log(projects)

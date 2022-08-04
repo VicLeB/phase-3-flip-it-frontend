@@ -1,7 +1,13 @@
 import React from "react";
 
-function Part({part}){
-
+function Part({part,handleSuppliesRender }){
+    function handleDeleteClick(){
+        fetch(`http://localhost:9292/parts/${part.id}`, {
+            method: "DELETE",
+        })
+        .then(res => res.json())
+        .then(handleSuppliesRender)
+    }
 
     return(
         <div className='col-sm-12'>
@@ -16,7 +22,7 @@ function Part({part}){
                     <p>{'$' + part.cost}</p>
                 </div>
                 <div className='col-sm-2'>
-                    <button className="btn btn-primary parts-delete">X</button>
+                    <button onClick={handleDeleteClick} className="btn btn-primary parts-delete">X</button>
                 </div>
             </div>
         </div>

@@ -40,6 +40,19 @@ function HouseForm({id}){
         .then(setProjectSupplies)
     },[projectId])
 
+    function handleSuppliesRender(){
+        fetch(`http://localhost:9292/projects/${projectId}`)
+        .then(res => res.json())
+        .then(setProjectSupplies)
+    }
+
+    function handleProjectsRender(){
+        fetch(`http://localhost:9292/rooms/${roomId}`)
+        .then(res => res.json())
+        .then(setRoomProjects)
+    }
+
+
 
     if (houseDetails === undefined) {
         return <div>Loading...</div>
@@ -66,9 +79,9 @@ function HouseForm({id}){
                 <div className='col-md-12'>
                     <div className='row'>
                         <House address = {address}/>
-                        <Rooms id={id} handleRoomClick={handleRoomClick}/>
-                        <Projects roomProjects = {roomProjects} handleProjectClick={handleProjectClick}/>
-                        <ProjectInfo id={id} projectSupplies= {projectSupplies}/>
+                        <Rooms id={id} handleRoomClick={handleRoomClick} />
+                        <Projects roomProjects = {roomProjects} handleProjectClick={handleProjectClick} handleProjectsRender={handleProjectsRender}/>
+                        <ProjectInfo id={id} projectSupplies= {projectSupplies} handleSuppliesRender={handleSuppliesRender}/>
                     </div>
                 </div>
             </div>
