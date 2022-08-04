@@ -16,7 +16,22 @@ function CreateNewHome(){
 
     function houseFormSubmit(e){
         (e).preventDefault();
+        fetch("http://localhost:9292/houses",{
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                house_name: formHouseName,
+                image_url: formHouseImage,
+                street_name: formHouseAddress,
+                city:formHouseCity,
+                state: formHouseState,
+                zip_code:formHouseZip,
+            })
+        })
     }
+
 
     return(
         <div className="col-md-8">
@@ -30,11 +45,11 @@ function CreateNewHome(){
                         <div className='form-group'>
                             <label htmlFor='house-image'>Image</label>
                             <input type='text' placeholder='Image URL' onChange={(e) => setFormHouseImage(e.target.value)} />
-                        </div> 
+                        </div>
                         <div className='form-group'>
                             <label htmlFor='house-address'>Address</label>
                             <input type='text' placeholder='Street Address' onChange={(e) => setFormHouseAddress(e.target.value)} />
-                        </div>   
+                        </div>
                         <div className='form-group'>
                             <input id='city' type='text' name='city' placeholder='City' onChange={(e) => setFormHouseCity(e.target.value)} />
                             <select id='state' type='text' name='state' onChange={(e) => setFormHouseState(e.target.value)} >
