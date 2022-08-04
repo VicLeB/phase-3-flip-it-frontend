@@ -3,11 +3,13 @@ import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import CreateNewHome from './CreateNewHome';
 import { useRecoilState } from 'recoil'
-import {theHouses} from '../atoms'
+import {theHouses, theSearchData} from '../atoms'
 
 
 function HouseSearch(){
+
   const [houses, setHouses] = useRecoilState(theHouses);
+  const [searchData, setSearchData] = useRecoilState(theSearchData);
 
   useEffect(()=>{
     fetch('http://localhost:9292/houses')
@@ -15,10 +17,17 @@ function HouseSearch(){
     .then(setHouses)
   },[])
 
+  let houseCatalog = []
 
-  const houseCatalog = houses.map(house => {
-    return <SearchResults key={house.id} house={house}/>
-  })
+  if(searchData === ''){
+
+    houseCatalog = houses.map(house => <SearchResults key={house.id} house={house}/> )
+
+  }
+  else{
+    const houseFilteredCatalog = houses.filter(house => house.house_name.includes(searchData.toLowerCase()))
+    houseCatalog = houseFilteredCatalog.map(house => <SearchResults key={house.id} house={house}/> )
+  }
 
     return (
       <div className='other-houses-search'>

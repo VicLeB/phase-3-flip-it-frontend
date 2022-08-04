@@ -124,3 +124,8 @@ export const theFormPartPrice = atom({
     key: 'formPartPrice',
     default: ''
 })
+
+export const theSearchData = atom({
+    key: 'searchData',
+    default: ''
+})
