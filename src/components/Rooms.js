@@ -25,8 +25,8 @@ function Rooms({id, handleRoomClick}){
         return <Room key={room.id} room={room} handleRoomClick={handleRoomClick} handleRoomsRender={handleRoomsRender}/>
     })
 
-    function roomFormSubmit(e){
-        (e).preventDefault();
+    function roomFormSubmit(){
+        console.log('room form submitted');
     }
 
     return (
@@ -40,13 +40,15 @@ function Rooms({id, handleRoomClick}){
                 <div className='col-sm-6'>
                     <div id='room-add-button'>
                         <Popup trigger={<button id="new-room-button" className="btn btn-primary">Add Room</button>} modal>
-                            <form onSubmit={roomFormSubmit}>
-                                <div className='form-group'>
-                                    <label htmlFor='room-name'>Room Name</label>
-                                    <input type='text' name='room-name' placeholder='Room Name' onChange={(e) => setFormRoomName(e.target.value)} />
-                                </div>
-                                <button name="submit" type="submit" className="btn btn-primary">Create Room</button>
-                            </form>
+                            {close => (
+                                <form onSubmit={(e) => {(e).preventDefault(); roomFormSubmit(); close(); }}>
+                                    <div className='form-group'>
+                                        <label htmlFor='room-name'>Room Name</label>
+                                        <input type='text' name='room-name' placeholder='Room Name' onChange={(e) => setFormRoomName(e.target.value)} />
+                                    </div>
+                                    <button name="submit" type="submit" className="btn btn-primary">Create Room</button>
+                                </form>
+                            )}
                         </Popup>
                     </div>
                 </div>

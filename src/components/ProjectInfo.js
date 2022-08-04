@@ -27,12 +27,12 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
         return <Part key= {part.id} part={part} handleSuppliesRender = {handleSuppliesRender}/>
     })
 
-    function toolFormSubmit(e){
-        (e).preventDefault();
+    function toolFormSubmit(){
+        console.log('tool form submitted');
     }
 
-    function partFormSubmit(e){
-        (e).preventDefault();
+    function partFormSubmit(){
+        console.log('part form submitted');
     }
 
     const cost = parts?.map(part => part.cost)
@@ -40,95 +40,108 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
             return accumulator + a;
         }, 0);
 
-
-
     return(
         <div className='col-md-3'>
-            <div className='row'>
-                <div className='col-sm-12'>
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor='project-name'>Project Name</label>
-                            <input type="text" id='project-name' className="form-control" onChange={(e) => setFormProjectInfoName(e.target.value)} value={projectSupplies.name} />
-                        </div>
-                        <div className="form-check">
-                            <input type="checkbox" className="form-check-input" id="project-completed" onChange={(e) => setFormProjectInfoCompleted(e.target.value)} />
-                            <label className="form-check-label" htmlFor="project-completed">Project Completed?</label>
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor='project-description'>Project Description</label>
-                            <textarea id='project-description' rows='5' className="form-control" onChange={(e) => setFormProjectInfoDescription(e.target.value)} value={projectSupplies.description} />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-sm-12'>
-                    <div className='row'>
-                        <div className='col-sm-6'>
-                            <p>Tools Needed</p>
-                        </div>
-                        <div className='col-sm-6'>
-                            <Popup trigger={<button id="new-tool-button" className="btn btn-primary">Add a Tool</button>} modal>
-                                <form onSubmit={toolFormSubmit}>
-                                    <div className='form-group'>
-                                        <label htmlFor='tool-name'>Tool Name</label>
-                                        <input type='text' name='tool-name' placeholder='Tool Name' onChange={(e) => setFormToolName(e.target.value)} />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label htmlFor='tool-image'>Tool Image</label>
-                                        <input type='text' name='tool-image' placeholder='Image URL' onChange={(e) => setFormToolImage(e.target.value)} />
-                                    </div>
-                                    <button name="submit" type="submit" className="btn btn-primary">Add Tool</button>
-                                </form>
-                            </Popup>
-                        </div>
-                    </div>
-                    <div id='tools-list-container'>
-                        <div className='row'>
-                            {toolsList}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='col-sm-12'>
-                    <div className='row'>
-                        <div className='col-sm-6'>
-                            <p>Parts Needed</p>
-                        </div>
-                        <div className='col-sm-6'>
-                            <Popup trigger={<button id="new-part-button" className="btn btn-primary">Add a Part</button>} modal>
-                                <form onSubmit={partFormSubmit}>
-                                    <div className='form-group'>
-                                        <label htmlFor='part-name'>Part Name</label>
-                                        <input type='text' name='part-name' placeholder='Part Name' onChange={(e) => setFormPartName(e.target.value)} />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label htmlFor='part-image'>Part Image</label>
-                                        <input type='text' name='part-image' placeholder='Image URL' onChange={(e) => setFormPartImage(e.target.value)} />
-                                    </div>
-                                    <div className='form-group'>
-                                        <label htmlFor='part-price'>Part Price</label>
-                                        <input type='text' name='part-price' placeholder='Part Price' onChange={(e) => setFormPartPrice(e.target.value)} />
-                                    </div>
-                                    <button name="submit" type="submit" className="btn btn-primary">Add Part</button>
-                                </form>
-                            </Popup>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id='parts-list-container'>
+            {projectSupplies.name !== undefined ? 
                 <div className='row'>
-                    {partsList}
+                    <div className='col-sm-12'>
+                        <form>
+                            <div className="form-group">
+                                <strong>Project Name</strong>
+                                <p>{projectSupplies.name}</p>
+                            </div>
+                            <div className="form-check">
+                                <input type="checkbox" className="form-check-input" id="project-completed" onChange={(e) => setFormProjectInfoCompleted(e.target.value)} />
+                                <label className="form-check-label" htmlFor="project-completed">Project Completed?</label>
+                            </div>
+                            <div className="form-group">
+                                <strong>Project Description</strong>
+                                <p>{projectSupplies.description}</p>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div className='row'>
-                <div className='col-sm-12'>
-                    <p><strong>Total Cost: ${cost}</strong></p>
+            : <></>}
+            {projectSupplies.name !== undefined ? 
+                <div className='row'>
+                    <div className='col-sm-12'>
+                        <div className='row'>
+                            <div className='col-sm-6'>
+                                <p>Tools Needed</p>
+                            </div>
+                            <div className='col-sm-6'>
+                                <Popup trigger={<button id="new-tool-button" className="btn btn-primary">Add a Tool</button>} modal>
+                                    {close => (
+                                        <form onSubmit={(e) => {(e).preventDefault(); toolFormSubmit(); close(); }}>
+                                            <div className='form-group'>
+                                                <label htmlFor='tool-name'>Tool Name</label>
+                                                <input type='text' name='tool-name' placeholder='Tool Name' onChange={(e) => setFormToolName(e.target.value)} />
+                                            </div>
+                                            <div className='form-group'>
+                                                <label htmlFor='tool-image'>Tool Image</label>
+                                                <input type='text' name='tool-image' placeholder='Image URL' onChange={(e) => setFormToolImage(e.target.value)} />
+                                            </div>
+                                            <button name="submit" type="submit" className="btn btn-primary">Add Tool</button>
+                                        </form>
+                                    )}
+                                </Popup>
+                            </div>
+                        </div>
+                        <div id='tools-list-container'>
+                            <div className='row'>
+                                {toolsList}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            : <></>}
+            {projectSupplies.name !== undefined ? 
+                <div className='row'>
+                    <div className='col-sm-12'>
+                        <div className='row'>
+                            <div className='col-sm-6'>
+                                <p>Parts Needed</p>
+                            </div>
+                            <div className='col-sm-6'>
+                                <Popup trigger={<button id="new-part-button" className="btn btn-primary">Add a Part</button>} modal>
+                                    {close => (
+                                        <form onSubmit={(e) => {(e).preventDefault(); partFormSubmit(); close(); }}>
+                                            <div className='form-group'>
+                                                <label htmlFor='part-name'>Part Name</label>
+                                                <input type='text' name='part-name' placeholder='Part Name' onChange={(e) => setFormPartName(e.target.value)} />
+                                            </div>
+                                            <div className='form-group'>
+                                                <label htmlFor='part-image'>Part Image</label>
+                                                <input type='text' name='part-image' placeholder='Image URL' onChange={(e) => setFormPartImage(e.target.value)} />
+                                            </div>
+                                            <div className='form-group'>
+                                                <label htmlFor='part-price'>Part Price</label>
+                                                <input type='text' name='part-price' placeholder='Part Price' onChange={(e) => setFormPartPrice(e.target.value)} />
+                                            </div>
+                                            <button name="submit" type="submit" className="btn btn-primary">Add Part</button>
+                                        </form>
+                                    )}
+                                </Popup>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            : <></>}
+            {projectSupplies.name !== undefined ? 
+                <div id='parts-list-container'>
+                    <div className='row'>
+                        {partsList}
+                    </div>
+                </div>
+            : <></>}
+            {projectSupplies.name !== undefined ? 
+                <div className='row'>
+                    <div className='col-sm-12'>
+                        <p><strong>Total Cost: ${cost}</strong></p>
+                    </div>
+                </div>
+            : <></>}
+
         </div>
     )
 }
