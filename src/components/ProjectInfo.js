@@ -35,6 +35,13 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
         (e).preventDefault();
     }
 
+    const cost = parts?.map(part => part.cost)
+        .reduce((accumulator, a) => {
+            return accumulator + a;
+        }, 0);
+
+
+
     return(
         <div className='col-md-3'>
             <div className='row'>
@@ -119,7 +126,7 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
             </div>
             <div className='row'>
                 <div className='col-sm-12'>
-                    <p><strong>Total Cost: $99.99</strong></p>
+                    <p><strong>Total Cost: ${cost}</strong></p>
                 </div>
             </div>
         </div>
