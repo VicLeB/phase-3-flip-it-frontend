@@ -18,9 +18,9 @@ function HouseSearch(){
   },[])
 
   let houseCatalog = []
-  
-  if(searchData === ''){ 
-    
+
+  if(searchData === ''){
+
     houseCatalog = houses.map(house => <SearchResults key={house.id} house={house}/> )
 
   }
