@@ -5,7 +5,7 @@ import Popup from 'reactjs-popup';
 import { useRecoilState } from 'recoil'
 import {theFormProjectInfoName, theFormProjectInfoDescription, theFormProjectInfoCompleted, theFormToolName, theFormToolImage, theFormPartName, theFormPartImage, theFormPartPrice} from '../atoms'
 
-function ProjectInfo({projectSupplies, handleSuppliesRender}){
+function ProjectInfo({projectSupplies, handleSuppliesRender, projectId}){
 
     const [formProjectInfoName, setFormProjectInfoName] = useRecoilState(theFormProjectInfoName);
     const [formProjectInfoDescription, setFormProjectInfoDescription] = useRecoilState(theFormProjectInfoDescription);
@@ -28,11 +28,38 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
     })
 
     function toolFormSubmit(){
-        console.log('tool form submitted');
+        fetch("http://localhost:9292/tools",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                Accept:"application/json",
+            },
+            body: JSON.stringify({
+                name: formToolName,
+                image_url: formToolImage,
+                project_id: projectId
+            })
+        })
+        .then(res => res.json())
+        .then(handleSuppliesRender)
     }
 
     function partFormSubmit(){
-        console.log('part form submitted');
+        fetch("http://localhost:9292/parts",{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                Accept:"application/json",
+            },
+            body: JSON.stringify({
+                name: formPartName,
+                image_url: formPartImage,
+                cost: formPartPrice,
+                project_id: projectId
+            })
+        })
+        .then(res => res.json())
+        .then(handleSuppliesRender)
     }
 
     const cost = parts?.map(part => part.cost)
@@ -42,7 +69,7 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
 
     return(
         <div className='col-md-3'>
-            {projectSupplies.name !== undefined ? 
+            {projectSupplies.name !== undefined ?
                 <div className='row'>
                     <div className='col-sm-12'>
                         <form>
@@ -62,7 +89,7 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
                     </div>
                 </div>
             : <></>}
-            {projectSupplies.name !== undefined ? 
+            {projectSupplies.name !== undefined ?
                 <div className='row'>
                     <div className='col-sm-12'>
                         <div className='row'>
@@ -95,7 +122,7 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
                     </div>
                 </div>
             : <></>}
-            {projectSupplies.name !== undefined ? 
+            {projectSupplies.name !== undefined ?
                 <div className='row'>
                     <div className='col-sm-12'>
                         <div className='row'>
@@ -127,14 +154,14 @@ function ProjectInfo({projectSupplies, handleSuppliesRender}){
                     </div>
                 </div>
             : <></>}
-            {projectSupplies.name !== undefined ? 
+            {projectSupplies.name !== undefined ?
                 <div id='parts-list-container'>
                     <div className='row'>
                         {partsList}
                     </div>
                 </div>
             : <></>}
-            {projectSupplies.name !== undefined ? 
+            {projectSupplies.name !== undefined ?
                 <div className='row'>
                     <div className='col-sm-12'>
                         <p><strong>Total Cost: ${cost}</strong></p>
