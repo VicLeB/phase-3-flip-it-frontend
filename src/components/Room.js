@@ -1,8 +1,10 @@
 import React from "react";
 import { useRecoilState } from 'recoil'
-import {theInitialLoad} from '../atoms'
+import { theRoomInitialLoad } from '../atoms'
 
 function Room({room, handleRoomClick, handleRoomsRender}){
+
+    const [roomInitialLoad, setroomInitialLoad] = useRecoilState(theRoomInitialLoad);
 
     function handleClick(e){
         (e).preventDefault()
@@ -10,12 +12,13 @@ function Room({room, handleRoomClick, handleRoomsRender}){
     }
 
     function handleDeleteClick(){
+        setroomInitialLoad(true)
+        
         fetch(`http://localhost:9292/rooms/${room.id}`, {
             method: "DELETE",
         })
         .then(res => res.json())
-        .then(handleRoomsRender)
-
+        .then(handleRoomsRender) 
     }
 
     return(
