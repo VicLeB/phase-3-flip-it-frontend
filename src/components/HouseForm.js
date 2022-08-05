@@ -4,7 +4,7 @@ import Rooms from './Rooms';
 import Projects from './Projects';
 import ProjectInfo from './ProjectInfo';
 import { useRecoilState } from 'recoil'
-import { theHouseDetials, theRoomId, theAddress, theRoomProjects, theProjectId, theProjectSupplies } from '../atoms'
+import { theHouseDetials, theRoomId, theAddress, theRoomProjects, theProjectId, theProjectSupplies, theRoomInitialLoad, theProjectInitialLoad } from '../atoms'
 
 
 function HouseForm({id}){
@@ -14,6 +14,8 @@ function HouseForm({id}){
     const [roomProjects, setRoomProjects] = useRecoilState(theRoomProjects);
     const [projectId, setProjectId] = useRecoilState(theProjectId);
     const [projectSupplies, setProjectSupplies] = useRecoilState(theProjectSupplies);
+    const [roomInitialLoad, setroomInitialLoad] = useRecoilState(theRoomInitialLoad);
+    const [projectInitialLoad, setProjectInitialLoad] = useRecoilState(theProjectInitialLoad);
 
 
     useEffect(()=>{
@@ -62,12 +64,15 @@ function HouseForm({id}){
 
     function handleRoomClick(roomIdent){
         setRoomId(roomIdent)
+        setroomInitialLoad(false)
     }
 
     function handleProjectClick(projectIdent){
         setProjectId(projectIdent)
+        setProjectInitialLoad(false)
     }
 
+    
 
     return (
         <div className='my-house-form'>
@@ -76,8 +81,8 @@ function HouseForm({id}){
                     <div className='row'>
                         <House address = {address}/>
                         <Rooms id={id} handleRoomClick={handleRoomClick} />
-                        <Projects roomId={roomId} roomProjects = {roomProjects} handleProjectClick={handleProjectClick} handleProjectsRender={handleProjectsRender}/>
-                        <ProjectInfo id={id} projectId={projectId} projectSupplies= {projectSupplies} handleSuppliesRender={handleSuppliesRender}/>
+                        {roomInitialLoad === false ? <Projects roomId={roomId} roomProjects = {roomProjects} handleProjectClick={handleProjectClick} handleProjectsRender={handleProjectsRender}/> : <></> }
+                        {projectInitialLoad === false ? <ProjectInfo id={id} projectId={projectId} projectSupplies= {projectSupplies} handleSuppliesRender={handleSuppliesRender}/> : <></> }
                     </div>
                 </div>
             </div>

@@ -129,3 +129,13 @@ export const theSearchData = atom({
     key: 'searchData',
     default: ''
 })
+
+export const theProjectInitialLoad = atom({
+    key: 'projectInitialLoad',
+    default: true
+})
+
+export const theRoomInitialLoad = atom({
+    key: 'roomInitialLoad',
+    default: true
+})
