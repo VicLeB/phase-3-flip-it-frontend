@@ -25,7 +25,7 @@ function HouseSearch(){
 
   }
   else{
-    const houseFilteredCatalog = houses.filter(house => house.house_name.includes(searchData.toLowerCase()))
+    const houseFilteredCatalog = houses.filter(house => house.house_name.toLowerCase().includes(searchData.toLowerCase()))
     houseCatalog = houseFilteredCatalog.map(house => <SearchResults key={house.id} house={house}/> )
   }
 
