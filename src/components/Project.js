@@ -1,6 +1,10 @@
 import React from "react";
+import { useRecoilState } from 'recoil'
+import { theProjectInitialLoad } from '../atoms'
 
 function Project({project, handleProjectClick, handleProjectsRender}){
+
+    const [projectInitialLoad, setProjectInitialLoad] = useRecoilState(theProjectInitialLoad);
 
     function handleClick(e){
         (e).preventDefault()
@@ -8,6 +12,8 @@ function Project({project, handleProjectClick, handleProjectsRender}){
     }
 
     function handleDeleteClick(){
+        setProjectInitialLoad(true);
+
         fetch(`http://localhost:9292/projects/${project.id}`, {
             method: "DELETE",
         })

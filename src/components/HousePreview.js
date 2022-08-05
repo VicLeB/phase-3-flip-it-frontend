@@ -1,7 +1,15 @@
 import React from 'react';
 import { Link } from "react-router-dom"
+import { useRecoilState } from 'recoil'
+import { theRoomInitialLoad, theProjectInitialLoad } from '../atoms'
 
 function HousePreview({house}){
+
+    const [roomInitialLoad, setroomInitialLoad] = useRecoilState(theRoomInitialLoad);
+    const [projectInitialLoad, setProjectInitialLoad] = useRecoilState(theProjectInitialLoad);
+
+    setroomInitialLoad(true);
+    setProjectInitialLoad(true);
 
     return (
             <div className='col-sm-2 house-preview'>
